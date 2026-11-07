@@ -1,0 +1,15 @@
+# Copy to local.properties, which Git ignores.
+
+# Client ID of your Trakt app. Rows from Trakt stay empty without it.
+traktClientId=
+
+# The name in the greeting: "Boa tarde, Alex."
+ownerName=Alex
+
+# Weather card.
+weatherCity=SÃO PAULO
+weatherLatitude=-23.55
+weatherLongitude=-46.63
+
+# When you linked Netflix to Trakt, in UTC. Titles paused before this count as Stremio's.
+netflixLinkedAt=2026-01-01T00:00

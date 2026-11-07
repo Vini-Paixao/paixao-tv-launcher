@@ -1,0 +1,47 @@
+plugins {
+    id 'com.android.application'
+}
+
+// Personal settings and the Trakt client ID live in local.properties, which Git ignores.
+def local = new Properties()
+if (rootProject.file('local.properties').exists()) {
+    rootProject.file('local.properties').withReader('UTF-8') { local.load(it) }
+}
+def setting = { key, fallback -> '"' + local.getProperty(key, fallback) + '"' }
+
+android {
+    namespace 'dev.leanhome'
+    compileSdk 34
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    defaultConfig {
+        applicationId 'dev.leanhome'
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName '0.1'
+        buildConfigField 'String', 'TRAKT_CLIENT_ID', setting('traktClientId', '')
+        buildConfigField 'String', 'OWNER_NAME', setting('ownerName', 'você')
+        buildConfigField 'String', 'WEATHER_CITY', setting('weatherCity', 'SÃO PAULO')
+        buildConfigField 'String', 'WEATHER_LATITUDE', setting('weatherLatitude', '-23.55')
+        buildConfigField 'String', 'WEATHER_LONGITUDE', setting('weatherLongitude', '-46.63')
+        buildConfigField 'String', 'NETFLIX_LINKED_AT', setting('netflixLinkedAt', '2026-01-01T00:00')
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}

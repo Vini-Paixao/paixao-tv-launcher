@@ -1,0 +1,13 @@
+.gradle/
+build/
+app/build/
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# Personal settings and credentials
+local.properties
+tmdb.txt
+trakt.txt
+trakt-token.json
